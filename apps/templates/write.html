@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container">
+	<div class="jumbotron">
+		<h3 class = "text-primary">글 작성 하기</h3>
+		<br>
+		<form method="post">
+<!-- 			<p>글쓴이 : <div class = "form-group">
+				<input type="text" class="form-control" name = "author" >
+			</div></p> -->
+			<p>분류 : <div class = "form-group">
+				<input type="text" class="form-control" name = "category" >
+			</div></p>
+			<p>제목 : 			
+				<div class = "form-group">
+					<input type="text" class="form-control" name = "title" >
+				</div>
+			</p>
+			<p>내용 : 
+				<div class = "form-group">
+					<p class="lead">
+						<textarea class="form-control" rows="3" name = "content" >
+						</textarea>
+					</p>
+				</div></p>
+
+				<p><button type="submit" class="btn btn-warning btn-lg btn-block">작성하기</button></p>
+
+			</form>
+		</div>
+	</div>
+
+	{% endblock %}

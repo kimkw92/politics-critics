@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class = "container">
+	{%if get_flashed_messages() %}
+	<div class = "jumbotron">
+		{%for each in get_flashed_messages() %}
+		{{each}}
+	</div>
+	{% endfor %}
+	{% endif %}
+	
+<div class = "containter">
+	<div class = "jumbotron">
+		<h3 class = "text-primary">로그인 하기</h3>
+		<form method ="post">
+			<p>이메일: <div class = "form-group">
+				<input type="text" class="form-control" name = "email" >
+			</div></p>
+				<p>비밀번호: <div class = "form-group">
+				<input type="password" class="form-control" name = "password" >
+			</div></p>
+
+				<p><button type="submit" class="btn btn-warning btn-lg btn-block">로그인!</button></p>
+		</form>
+	</div>
+</div>
+{% endblock %}
+

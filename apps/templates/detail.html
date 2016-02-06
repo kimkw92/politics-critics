@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class = "container">
+	{%if get_flashed_messages() %}
+	<div class = "jumbotron">
+		{%for each in get_flashed_messages() %}
+		{{each}}
+	</div>
+	{% endfor %}
+	{% endif %}
+	
+<div class = "container">
+	<div class = "jumbotron">
+		<div class = "panel panel-default">
+			<div class = "panel-heading">
+				<div class = "text-left" style = "color:Blue">
+					<{{this.author}}>
+				</div>
+				<p class = "text-center" style = "color:Green">
+					{{this.title}}
+				</p>
+				<p class = "text-right" >
+					{{this.date_created}}
+				</p>
+			</div>
+			<div class = "panel-body">
+				<p class = "text-center">
+					{{this.content}}
+				</p>
+			</div>
+			<p class = "text-center" >
+
+				<a href="/like/{{this.id}}"><button type="submit" class="btn btn-danger btn-lg">Like!</button></a>
+				{{this.like}}
+				<a href="/hate/{{this.id}}"><button type="submit" class="btn btn-success btn-lg">Hate!</button></a>
+				{{this.hate}}
+				<p class = "text-right">
+
+					<a href="../comment/new/{{this.id}}">댓글</a>
+					<a href="../delete/{{this.id}}" style = "color:Gray">삭제</a>
+					<a href="../modify/{{this.id}}"style = "color:Gray">수정</a>
+				</p>
+			</p>
+		</div>
+	</div>
+	<h2 class = "text-center" style = "color:Red">------- 댓글 -------</h2>
+	<div class = "container">
+		<div class = "jumbotron">
+
+			{% for each in this_comment %}
+			<div class = "panel-heading" style = "color:Blue">
+				{{each.author}}, {{each.date_created}}
+			</div>
+			<div class = "panel-body">
+				{{each.content}}
+			</div>
+			<div class = "text-right">
+				<a href="../comment/delete/{{each.id}}" style = "color:Gray">삭제</a>
+				<a href="../comment/modify/{{each.id}}" style = "color:Gray">수정</a>
+			</div>
+			{% endfor %}
+
+		</div>
+	</div>
+</div>
+{% endblock %}

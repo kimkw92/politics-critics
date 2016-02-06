@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class = "container">
+	<h3 class = "text-primary">글 수정 하기</h3>
+	<div class = "jumbotron">
+		<form method = "post">
+			<!-- <p>Author : <input type = "text" name = "author" value = {{this_comment.author}}></p> -->
+			<p class="lead">
+				<textarea class="form-control" rows="3" name = "content" value = {{this_comment.content}}>
+				</textarea>
+			</p>
+			<!-- <p>content : <input type = "text" name = "content" value = {{this_comment.content}}></p> -->
+			<p><button type="submit" class="btn btn-warning btn-lg btn-block">수정하기</button></p>
+		</form>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class = "container">
+	{%if get_flashed_messages() %}
+	<div class = "jumbotron">
+		{%for each in get_flashed_messages() %}
+		{{each}}
+	</div>
+	{% endfor %}
+	{% endif %}
+
+
+	<div class = "jumbotron" id = "additional">
+		{% for each in content['article_list'] %}
+		<div class = "panel panel-default">
+			<div class = "panel-heading">
+				<a href="detail/{{each.id}}">
+					<div class = "text-left" style = "color:Blue">
+						{{each.author}}
+					</div> 
+					<p class = "text-center" style = "color:Green">
+						{{each.title}}
+					</p>
+				</a>
+			</div>
+			<p class = "panel-body">
+				<p class = "text-center">
+					{{each.content}}
+				</p>
+			</p>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class = "text-center">
+	<button type="submit" class="btn btn-success btn-lg" id="load_more_button">더 보기!</button>
+</div>
+{% endblock %}
+
+
+

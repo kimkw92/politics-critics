@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class = "containter">
+	<div class = "jumbotron">
+		<h3 class = "text-primary">회원가입 하기</h3>
+		<form method ="post">
+			{{ form.hidden_tag() }}
+			{% from "_form_field.html" import render_field %}
+			{% for field in form %}
+				{% if field.widget.input_type != 'hidden' %}
+				{{ render_field(field, class="form-control") }}
+				{% endif %}
+			{% endfor %}
+			<br>
+			<p><button type="submit" class="btn btn-warning btn-lg btn-block">회원가입</button></p>		
+		</form>
+	</div>
+</div>
+{% endblock %}

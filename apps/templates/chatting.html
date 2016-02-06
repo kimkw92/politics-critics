@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>채팅</title>
+
+	<script src="http://js.pusher.com/2.2/pusher.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+    // Enable pusher logging - don't include this in production
+    Pusher.log = function(message) {
+    	if (window.console && window.console.log) {
+    		window.console.log(message);
+    	}
+    };
+
+    var pusher = new Pusher('de42785da4ca0d2657a1');
+    var channel = pusher.subscribe('sasung_channel');
+    
+
+//이 밑에 부분이 실제 코드 작성하는 부분.
+channel.bind('my_event', function(data) {
+	$('.viewer').append(data.from_server+"<br>");
+    $('.viewer').scrollTop($('.viewer').height());
+});
+</script>
+
+<script type =text/javascript>
+
+$(document).ready(function(){
+	$('.submit').click(function(){
+		$.ajax({
+			url:'/ajax_ex',
+			type:'POST',
+			data:{
+				from_html : $('.message').val()
+			},
+			dataType:'JSON',
+			success: function(data){
+				// $('.viewer').append(data.from_server);
+				$('.message').val("");
+				;
+			}
+		});
+	});
+});
+</script>
+
+<style>
+.viewer{
+	background: #87ceeb;
+	width: 600px;
+	height: 600px;
+	font-family:"baedal";
+	src: url("../fonts/BM-HANNA.woff");
+	overflow-y:scroll;
+}
+</style>
+
+
+</head>
+<body>
+	<h3>사성 라이브쇼</h3>
+	
+	<div>
+		<input type="text" class="message">
+		<button class="submit">입력</button>
+
+
+	</div>
+	<div class="viewer">
+		
+	</div>
+
+
+</body>
+</html>

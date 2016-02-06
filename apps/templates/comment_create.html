@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+	<div class = "container">
+		<div class = "jumbotron">
+			<form method = "post" action='/comment/new/{{this.id}}'>
+				<!-- <p>이름 : <input type = "text" name = "author"></p> -->
+				<!-- <p>E-mail : <input type = "text" name = "email"></p> -->
+				<!-- <p>비밀번호 : <input type = "text" name = "password"></p> -->
+				<p>내용 : <input type = "text" name = "content"></p>
+				<p><button type="submit" class="btn btn-warning btn-lg btn-block">작성하기</button></p>
+			</form>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+  <title>익명인사이드</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ url_for('static', filename='css/navbar-fixed-top.css') }}" rel="stylesheet">
+
+  <!-- style.css -->
+  <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+{% block css %}
+{% endblock css %}
+{% block js%}
+{% endblock js%}
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+  <script src="{{ url_for('static', filename='js/ie-emulation-modes-warning.js') }}"></script>
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+
+  <script src ="{{url_for('static', filename='js/ajax.js')}}"></script>
+
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+    </head>
+
+    <body>
+
+      <!-- Fixed navbar -->
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ url_for('index') }}">익명인사이드</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li{% if active_tab == "index" %} class="active"{% endif %}><a href="{{ url_for('index') }}">이야기 공간</a></li>
+              <li{% if active_tab == "new" %} class="active"{% endif %}><a href="{{ url_for('new_article') }}">글 작성하기</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              {% if session.session_user_name %}
+              <li style = "margin-top : 15px">{{session.session_user_name}}님</li>
+              {% endif %}
+              {% if not session.session_user_name %}
+              <li><a href="{{url_for('signup')}}">회원가입</a></li>
+              <li><a href="{{url_for('login')}}">로그인</a></li>
+              {% else %}
+              <li><a href="{{url_for('logout')}}">로그아웃</a></li>
+              {% endif %}
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+
+      {% block body %}
+      {% endblock %}
+
+      <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script> -->
+  </body>
+  </html>
